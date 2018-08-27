@@ -1,15 +1,5 @@
 # ios-swift-app-bridgingExample
 
-### Table of contents
-
-  1. [ Introduction ](#introduction)
-  2. [ Configure our SDK in your Swift project (Manual installation) ](#configureprojectswift)
-  3. [ Set API Key ](#apikeyswift)
-  4. [ Download your buildings ](#fetchindoorbuildingsswift)
-  5. [ Download building data ](#fetchbuildinginfoswift)
-  6. [ Activate the positioning ](#positioningswift)
-
-<a name="introduction"></a>
 ### Introduction 
 
 In this tutorial, we will guide you step by step to set up your first Objective C application using Situm SDK. Before starting to write code, we recommend you to set up an account in our [Dashboard](https://dashboard.situm.es), retrieve your APIKEY and configure your first building.
@@ -21,7 +11,6 @@ In this tutorial, we will guide you step by step to set up your first Objective 
 
 Perfect! Now you are ready to develop your first indoor positioning application. Following you'll find some examples of how to retrieve buildings, information and position updates using SitumSDK from Swift. **While all this examples are already implemented in this example project, you can use it to get a better understanding of the code**.
 
-<a name="configureprojectswift"></a>
 ### Step 1: Configure our SDK in your Swift project (Manual installation) 
 
 First of all, you must configure Situm SDK in your iOS project.
@@ -57,7 +46,6 @@ You can now compile and check everything is working.
 
 And that's all. From now on, you should be able to use Situm SDK in your app.
 
-<a name="apikeyswift"></a>
 ### Step 2: Set API Key 
 
 Now that you have correctly configured your Swift project, you can start writting your application's code. All you need to do is introduce your credentials. You can do that in your AppDelegate.swiftfile. There are two ways of doing this:
@@ -78,7 +66,6 @@ This is the other available option to provide your credentials, with your userna
 SITServices.provideUser("SET YOUR USER HERE", password: "SET YOUR PASSWORD HERE")
 ```
 
-<a name="fetchindoorbuildingsswift"></a>
 ### Step 3: Download your buildings 
 
 At this point, you should be able to retrieve the list of buildings associated with your user's account. To do so, include the following code snippet, that will also receive an error object in case the retrieve operation fails.
@@ -92,7 +79,7 @@ sharedManager.fetchBuildings(options: nil, success: { (mapping: [AnyHashable : A
         // Handle error accordingly
     })
 ```
-<a name="fetchbuildinginfoswift"></a>
+
 ### Step 4: Download building data
 Once we have the buildings, it is straightforward to get their information. For instance, in order to obtain all the floors of the first building retrieved, we just have to select the required building:
 
@@ -110,7 +97,6 @@ sharedManager.fetchBuildingInfo(building.identifier, withOptions: nil, success: 
 
 As we can see, all requests are very similar, and remain being so for the other resources (events, points of interest, floorplans, etc.).
 
-<a name="positioningswift"></a>
 ### Step 5: Activate the positioning
 
 The last step is to initiate the indoor positioning on a certain building. This will allow the app to retrieve the location of the smartphone within this building. In order to receive location updates, just add the following code to your project:
