@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ViewController.locationManager(_:didUpdate:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "state.rawValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SITLocationManager requestLocationUpdates:]:SITLocationManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[request isValid]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
