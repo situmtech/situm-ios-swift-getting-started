@@ -1,4 +1,6 @@
-# ios-swift-app-bridgingExample
+# Situm iOS Swift Example
+
+**This is a basic example showing how to integrate your Swift aplication with the Situm SDK. For a full-fledged example of the Situm SDK features see our [Objective-C Code Samples](https://github.com/situmtech/situm-ios-code-samples)**
 
 ### Introduction 
 
