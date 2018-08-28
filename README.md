@@ -32,9 +32,9 @@ In order to include the SitumSDK framework you should follow this instructions:
 
 5- In order to ask for permission to use the location of the user you should include the following keys in your Info.plist file:
 
-* NSLocationWhenInUseUsageDescription (in XCode, 'Privacy - Location When In Use Usage Description')
+* `NSLocationWhenInUseUsageDescription` (in XCode, 'Privacy - Location When In Use Usage Description')
 
-* NSLocationAlwaysUsageDescription (in XCode, 'Privacy - Location Always and When In Use Usage Description') 
+* `NSLocationAlwaysUsageDescription` (in XCode, 'Privacy - Location Always and When In Use Usage Description') 
 
 Both with the value 'Location is required to find out where you are' or a custom message that you like.
 
@@ -52,11 +52,11 @@ And that's all. From now on, you should be able to use Situm SDK in your app.
 
 ### Step 2: Set API Key 
 
-Now that you have correctly configured your Swift project, you can start writting your application's code. All you need to do is introduce your credentials. You can do that in your "AppDelegate.swift" file. There are two ways of doing this:
+Now that you have correctly configured your Swift project, you can start writting your application's code. All you need to do is introduce your credentials. You can do that in your `AppDelegate.swift` file. There are two ways of doing this:
 
 ##### Using your email address and APIKEY.
 
-This is the recommended option and the one we have implemented in this project. You will find the function in your "AppDelegate.swift" file, just add the line to set your credentials.
+This is the recommended option and the one we have implemented in this project. You will find the function in your `AppDelegate.swift` file, just add the line to set your credentials.
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
