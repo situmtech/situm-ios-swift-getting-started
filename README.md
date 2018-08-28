@@ -2,12 +2,12 @@
 
 ### Introduction 
 
-In this tutorial, we will guide you step by step to set up your first Objective C application using Situm SDK. Before starting to write code, we recommend you to set up an account in our [Dashboard](https://dashboard.situm.es), retrieve your APIKEY and configure your first building.
+In this tutorial, we will guide you step by step to set up your first Swift application using Situm SDK. Before starting to write code, we recommend you to set up an account in our [Dashboard](https://dashboard.situm.es), retrieve your APIKEY and configure your first building.
 
 1. Go to the [sign in form](http://dashboard.situm.es/accounts/register) and enter your username and password to sign in.
 2. Go to the [account section](https://dashboard.situm.es/accounts/profile) and on the bottom, click on "generate one" to generate your API KEY.
 3. Go to the [buildings section](http://dashboard.situm.es/buildings) and create your first building.
-4. Download [SitumMaps](https://play.google.com/store/apps/details?id=es.situm.maps). With this application, you will be able to configure and test Situm's indoor positioning system in your buildings (coming soon on iOS).
+4. Download [Situm Mapping Tool](https://play.google.com/store/apps/details?id=es.situm.maps). With this application, you will be able to configure and test Situm's indoor positioning system in your buildings (coming soon on iOS).
 
 Perfect! Now you are ready to develop your first indoor positioning application. Following you'll find some examples of how to retrieve buildings, information and position updates using SitumSDK from Swift. **While all this examples are already implemented in this example project, you can use it to get a better understanding of the code**.
 
@@ -32,7 +32,11 @@ In order to include the SitumSDK framework you should follow this instructions:
 
 5- In order to ask for permission to use the location of the user you should include the following keys in your Info.plist file:
 
-    - NSLocationWhenInUseUsageDescription (in XCode, 'Privacy - Location When In Use Usage Description') and NSLocationAlwaysUsageDescription (in XCode, 'Privacy - Location Always and When In Use Usage Description') with the value 'Location is required to find out where you are' or a custom message that you like.
+* NSLocationWhenInUseUsageDescription (in XCode, 'Privacy - Location When In Use Usage Description')
+
+* NSLocationAlwaysUsageDescription (in XCode, 'Privacy - Location Always and When In Use Usage Description') 
+
+Both with the value 'Location is required to find out where you are' or a custom message that you like.
 
 6- Create a header file (.h) and add the line:
 
@@ -48,22 +52,28 @@ And that's all. From now on, you should be able to use Situm SDK in your app.
 
 ### Step 2: Set API Key 
 
-Now that you have correctly configured your Swift project, you can start writting your application's code. All you need to do is introduce your credentials. You can do that in your AppDelegate.swiftfile. There are two ways of doing this:
+Now that you have correctly configured your Swift project, you can start writting your application's code. All you need to do is introduce your credentials. You can do that in your _AppDelegate.swift_ file. There are two ways of doing this:
 
 ##### Using your email address and APIKEY.
 
-This is the recommended option and the one we have implemented in this project. Write the following sentence on the -application:didFinishLaunchingWithOptions: method.
+This is the recommended option and the one we have implemented in this project. You´ll find the function in your _AppDelegate.swift_ file, just add the line to set your credentials.
 
 ```swift
-SITServices.provideAPIKey("SET YOUR APIKEY HERE", forEmail: "SET YOUR EMAIL HERE")
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        SITServices.provideAPIKey("SET YOUR APIKEY HERE", forEmail: "SET YOUR EMAIL HERE")
+        return true
+}
 ```
 
 ##### Using your user and password
 
-This is the other available option to provide your credentials, with your username and password. As in the previous case, write the following sentence on the -application:didFinishLaunchingWithOptions: method.
+This is the other available option to provide your credentials, with your username and password. As in the previous case, just add the line to set your credentials.
 
 ```swift
-SITServices.provideUser("SET YOUR USER HERE", password: "SET YOUR PASSWORD HERE")
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        SITServices.provideUser("SET YOUR USER HERE", password: "SET YOUR PASSWORD HERE")
+        return true
+}
 ```
 
 ### Step 3: Download your buildings 
@@ -95,13 +105,13 @@ sharedManager.fetchBuildingInfo(building.identifier, withOptions: nil, success: 
     })
 ```
 
-As we can see, all requests are very similar, and remain being so for the other resources (events, points of interest, floorplans, etc.).
+As we can see, all requests are very similar, and remain being so for the other resources (points of interest, floorplans, etc.).
 
 ### Step 5: Activate the positioning
 
 The last step is to initiate the indoor positioning on a certain building. This will allow the app to retrieve the location of the smartphone within this building. In order to receive location updates, just add the following code to your project:
 
-In your class, make sure to conform to the protocol SITLocationDelegate
+In your class, make sure to conform to the protocol SITLocationDelegate protocol:
 
 ```swift
 var sharedLocationManager: SITLocationManager = SITLocationManager.sharedInstance()
