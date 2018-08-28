@@ -52,11 +52,11 @@ And that's all. From now on, you should be able to use Situm SDK in your app.
 
 ### Step 2: Set API Key 
 
-Now that you have correctly configured your Swift project, you can start writting your application's code. All you need to do is introduce your credentials. You can do that in your _AppDelegate.swift_ file. There are two ways of doing this:
+Now that you have correctly configured your Swift project, you can start writting your application's code. All you need to do is introduce your credentials. You can do that in your "AppDelegate.swift" file. There are two ways of doing this:
 
 ##### Using your email address and APIKEY.
 
-This is the recommended option and the one we have implemented in this project. You´ll find the function in your _AppDelegate.swift_ file, just add the line to set your credentials.
+This is the recommended option and the one we have implemented in this project. You will find the function in your "AppDelegate.swift" file, just add the line to set your credentials.
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
