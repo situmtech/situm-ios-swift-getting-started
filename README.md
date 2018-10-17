@@ -134,7 +134,7 @@ As we can see, all requests are very similar, and remain being so for the other 
 ### <a name="fetchNearestBuilding"></a> Fetch nearest building
 In order to detect what's the nearest building to your current location, you need to fetch the buildings list, obtain your current location using CoreLocation, and then calculate the distance between your current location and each building on your account. This can be done as follows:
 
-```
+```swift
 let locationManager: CLLocationManager = CLLocationManager()
 
 ···
@@ -208,7 +208,7 @@ Situm SDK provides a way to show the indications while you are going from one po
 
 * The route planned:
 
-```
+```swift
   let navigationRequest : SITNavigationRequest = SITNavigationRequest.init(route: route)
   navigationManager.requestNavigationUpdates(navigationRequest)
   
@@ -236,7 +236,7 @@ Situm SDK provides a way to show the indications while you are going from one po
 
 * Updating your position through the route
 
-```
+```swift
     func locationManager(_ locationManager: SITLocationInterface, didUpdate location: SITLocation) {
         //Every time a new location is received, you must update the navigationManager with it
         if (navigationManager.isRunning()) {
