@@ -2,7 +2,26 @@
 
 **This is a basic example showing how to integrate your Swift aplication with the Situm SDK. For a full-fledged example of the Situm SDK features see our [Objective-C Code Samples](https://github.com/situmtech/situm-ios-code-samples)**
 
-### Introduction 
+## Table of contents
+
+[Introduction](#introduction)
+
+[Setup](#setup)
+
+1. [Configure our SDK in your iOS project (Manual instalation)](#configureproject)
+2. [Set API Key](#apikey)
+
+[Samples](#samples)
+1. [Fetch buildings](#fetchBuildings)
+2. [Fetch building info](#fetchBuildingInfo)
+3. [Fetch nearest building](#fetchNearestBuilding)
+4. [Activate the positioning](#positioning)
+5. [Navigation](#navigation)
+
+[More information](#moreinfo)
+[Support information](#supportinfo)
+
+## Introduction <a name="introduction"></a>
 
 In this tutorial, we will guide you step by step to set up your first Swift application using Situm SDK. Before starting to write code, we recommend you to set up an account in our [Dashboard](https://dashboard.situm.es), retrieve your APIKEY and configure your first building.
 
@@ -13,7 +32,9 @@ In this tutorial, we will guide you step by step to set up your first Swift appl
 
 Perfect! Now you are ready to develop your first indoor positioning application. Following you'll find some examples of how to retrieve buildings, information and position updates using SitumSDK from Swift. **While all this examples are already implemented in this example project, you can use it to get a better understanding of the code**.
 
-### Step 1: Configure our SDK in your Swift project (Manual installation) 
+## <a name="setup"></a> Setup
+
+### Step 1: Configure our SDK in your Swift project (Manual installation) <a name="configureproject"></a>
 
 First of all, you must configure Situm SDK in your iOS project.
 
@@ -52,7 +73,7 @@ You can now compile and check everything is working.
 
 And that's all. From now on, you should be able to use Situm SDK in your app.
 
-### Step 2: Set API Key 
+### Step 2: Set API Key <a name="apikey"></a>
 
 Now that you have correctly configured your Swift project, you can start writting your application's code. All you need to do is introduce your credentials. You can do that in your `AppDelegate.swift` file. There are two ways of doing this:
 
@@ -78,7 +99,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-### Step 3: Download your buildings 
+## Samples <a name="samples"></a>
+### <a name="fetchBuildings"></a> Fetch buildings
 
 At this point, you should be able to retrieve the list of buildings associated with your user's account. To do so, include the following code snippet, that will also receive an error object in case the retrieve operation fails.
 
@@ -92,7 +114,7 @@ sharedManager.fetchBuildings(options: nil, success: { (mapping: [AnyHashable : A
     })
 ```
 
-### Step 4: Download building data
+### <a name="fetchBuildingInfo"></a> Fetch building info
 Once we have the buildings, it is straightforward to get their information. For instance, in order to obtain all the floors of the first building retrieved, we just have to select the required building:
 
 ```swift
@@ -109,7 +131,46 @@ sharedManager.fetchBuildingInfo(building.identifier, withOptions: nil, success: 
 
 As we can see, all requests are very similar, and remain being so for the other resources (points of interest, floorplans, etc.).
 
-### Step 5: Activate the positioning
+### <a name="fetchNearestBuilding"></a> Fetch nearest building
+In order to detect what's the nearest building to your current location, you need to fetch the buildings list, obtain your current location using CoreLocation, and then calculate the distance between your current location and each building on your account. This can be done as follows:
+
+```
+let locationManager: CLLocationManager = CLLocationManager()
+
+···
+
+    func getNearestBuilding() {
+    
+        //Configure CLLocationManager
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.requestAlwaysAuthorization()
+        
+        //Start and stop location updates in order to get only one update
+        locationManager.startUpdatingLocation()
+        locationManager.stopUpdatingLocation()
+    }
+    
+    //CLLocationManagerDelegate method
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location: CLLocation = locations[0]
+        let buildingLocation: CLLocation = getLocationFromLocation2D(buildings[0].center())
+        var minDistance: CLLocationDistance = location.distance(from: buildingLocation)
+        var selectedBuilding = buildings[0]
+        for building in self.buildings {
+            let buildingLocation = getLocationFromLocation2D(building.center())
+            let distance: CLLocationDistance = location.distance(from: buildingLocation)
+            if (distance < minDistance) {
+                minDistance = distance
+                //At the end of the loop, selectedBuilding contains the nearest building
+                selectedBuilding = building
+            }
+        }
+    }
+```
+
+### <a name="positioning"></a> Activate the positioning
 
 The last step is to initiate the indoor positioning on a certain building. This will allow the app to retrieve the location of the smartphone within this building. In order to receive location updates, just add the following code to your project:
 
@@ -140,3 +201,56 @@ func locationManager(_ locationManager: SITLocationInterface, didUpdate state: S
     // Handle location manager state
 }
 ```
+
+### <a name="navigation"></a> Navigation
+
+Situm SDK provides a way to show the indications while you are going from one point to another. Since we have already seen how to get your location and how to plan a route between two points, here we will talk only about how to get the indications. This is a two-steps-functionallity, first we have to tell the route we have planned to do and then update every time we move our position in the route.
+
+* The route planned:
+
+```
+  let navigationRequest : SITNavigationRequest = SITNavigationRequest.init(route: route)
+  navigationManager.requestNavigationUpdates(navigationRequest)
+  
+  ···
+  
+    //NavigationManagerDelegate methods
+    func navigationManager(_ navigationManager: SITNavigationInterface!, didFailWithError error: Error!) {
+        print(error)
+    }
+    
+    func navigationManager(_ navigationManager: SITNavigationInterface!, didUpdate progress: SITNavigationProgress!, on route: SITRoute!) {
+        //This contains navigation updates
+        print(progress.currentIndication)
+    }
+    
+    func navigationManager(_ navigationManager: SITNavigationInterface!, destinationReachedOn route: SITRoute!) {
+        print("Destination reached")
+    }
+    
+    func navigationManager(_ navigationManager: SITNavigationInterface!, userOutsideRoute route: SITRoute!) {
+        print("User outside route")
+    }
+        
+```
+
+* Updating your position through the route
+
+```
+    func locationManager(_ locationManager: SITLocationInterface, didUpdate location: SITLocation) {
+        //Every time a new location is received, you must update the navigationManager with it
+        if (navigationManager.isRunning()) {
+            navigationManager.update(with: location)
+        }
+    }
+```
+
+If you want to know more about the indications, you can check the [SDK Documentation](http://developers.situm.es/sdk_documentation/ios/documentation/html/Classes/SITNavigationProgress.html).
+
+## <a name="moreinfo"></a> More information
+
+More info is available at our [Developers Page](https://des.situm.es/developers/pages/ios/).
+
+## <a name="supportinfo"></a> Support information
+
+For any question or bug report, please send an email to [support@situm.es](mailto:support@situm.es)
