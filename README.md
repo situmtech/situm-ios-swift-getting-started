@@ -36,7 +36,7 @@ Perfect! Now you are ready to develop your first indoor positioning application.
 
 ### <a name="configuration"></a> Step 1: Configuration guide
 
-To learn how to configure our SDK, please visit our [developers page](http://developers.situm.es/pages/ios/quick_start_guide.html).
+To learn how to configure our SDK, please visit our [developers page](http://developers.situm.es/pages/ios/quick_start_guide_swift.html).
 
 ### Step 2: Set API Key <a name="apikey"></a>
 
