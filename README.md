@@ -8,7 +8,7 @@
 
 [Setup](#setup)
 
-1. [Configure our SDK in your iOS project (Manual instalation)](#configureproject)
+1. [Configure our SDK in your iOS project](#configuration)
 2. [Set API Key](#apikey)
 
 [Samples](#samples)
@@ -34,56 +34,9 @@ Perfect! Now you are ready to develop your first indoor positioning application.
 
 ## <a name="setup"></a> Setup
 
-### <a name="configureproject"></a> Step 1: Configure our SDK in your iOS project 
+### <a name="configuration"></a> Step 1: Configuration guide
 
-First of all, you must configure Situm SDK in your iOS project. This has been already done for you in the sample application, but nonetheless we will walk you through the process. There's two ways to integrate SitumSDK in your project:
-
-#### Cocapods (recommended for production)
-
-* Create a `Podfile` in the root folder of your project. Add a dependency with SitumSDK like this:
-
-```
-target '<your_target_name>' do
-  use_frameworks!
-  source 'https://github.com/CocoaPods/Specs.git'
-  platform :ios, '9.0'
-  pod 'SitumSDK'
-```
-After creating the file, you just have to run `pod install` from the route folder of your project, close the `project.xcodeproj` file and open `project.xcworkspace` instead. SitumSDK will be downloaded and correctly linked, so you can keep working from here. More information about Cocoapods [here](https://guides.cocoapods.org/using/index.html).
-
-#### Manual installation
-
-* Drag the file SitumSDK.framework to your project (normally this should be included in a SitumSDK folder, inside your Vendor folder). Make sure to check the option "Copy items if needed". In recent versions of Xcode this automatically links your app with the framework as you can check on the Build phase tab, Link Binary with Libraries section. Otherwise, add a link to the framework. You can download the latest version of our SDK from our developers page on [Situm developers iOS](http://developers.situm.es/pages/ios).
-
-
-####Other dependencies installation 
-
-- Link the following libraries:
-
-    - CoreLocation
-    - CoreMotion
-    - libc++.tbd
-    - libz.tbd
-
-- In the configuration of your project, under Linking/Other Linking Flags add the flag "-ObjC"
-
-- Disable Bitcode. Go to the Build settings tab of your app, search for the option Enable Bitcode and select NO as the value for the setting.
-
-- In order to ask for permission to use the location of the user you should include both of the following keys with the value 'Location is required to find out where you are' or a custom message that you like in your Info.plist file:
-
-	* `NSLocationWhenInUseUsageDescription` (in XCode, 'Privacy - Location When In Use Usage Description')
-	
-	* `NSLocationAlwaysUsageDescription` (in XCode, 'Privacy - Location Always and When In Use Usage Description'). 
-
-- Create a header file (.h) and add the line:
-
-```objc
-#import <SitumSDK/SitumSDK.h>
-```
-
-- In the configuration of your project, under Swift compiler - General/Objective-C Bridging Header add the route from the project root to the header file created previously.
-
-You can now compile and check everything is working. And that's all. From now on, you should be able to use Situm SDK in your app.
+To learn how to configure our SDK, please visit our [developers page](http://developers.situm.es/pages/ios/quick_start_guide.html).
 
 ### Step 2: Set API Key <a name="apikey"></a>
 
