@@ -8,7 +8,7 @@
 
 [Setup](#setup)
 
-1. [Configure our SDK in your iOS project (Manual instalation)](#configureproject)
+1. [Configure our SDK in your iOS project](#configuration)
 2. [Set API Key](#apikey)
 
 [Samples](#samples)
@@ -34,44 +34,9 @@ Perfect! Now you are ready to develop your first indoor positioning application.
 
 ## <a name="setup"></a> Setup
 
-### Step 1: Configure our SDK in your Swift project (Manual installation) <a name="configureproject"></a>
+### <a name="configuration"></a> Step 1: Configuration guide
 
-First of all, you must configure Situm SDK in your iOS project.
-
-In order to include the SitumSDK framework you should follow this instructions:
-
-1- Drag SitumSDK.framework file to the xcode to the most convinient place in your project. Make sure to check the 'Copy items if needed' option.
-
-2- Link the following libraries:
-
-    - CoreLocation
-    - CoreMotion
-    - libc++.tbd
-    - libz.tbd
-
-3- In the configuration of your project, under Linking/Other Linking Flags add the flag "-ObjC"
-
-4- Disable Bitcode. Go to the Build settings tab of your app, search for the option Enable Bitcode and select NO as the value for the setting.
-
-5- In order to ask for permission to use the location of the user you should include the following keys in your Info.plist file:
-
-* `NSLocationWhenInUseUsageDescription` (in XCode, 'Privacy - Location When In Use Usage Description')
-
-* `NSLocationAlwaysUsageDescription` (in XCode, 'Privacy - Location Always and When In Use Usage Description') 
-
-Both with the value 'Location is required to find out where you are' or a custom message that you like.
-
-6- Create a header file (.h) and add the line:
-
-```objc
-#import <SitumSDK/SitumSDK.h>
-```
-
-7- In the configuration of your project, under Swift compiler - General/Objective-C Bridging Header add the route from the project root to the header file created previously.
-
-You can now compile and check everything is working.
-
-And that's all. From now on, you should be able to use Situm SDK in your app.
+To learn how to configure our SDK, please visit our [developers page](http://developers.situm.es/pages/ios/quick_start_guide_swift.html).
 
 ### Step 2: Set API Key <a name="apikey"></a>
 
