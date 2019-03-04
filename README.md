@@ -36,7 +36,7 @@ Perfect! Now you are ready to develop your first indoor positioning application.
 
 ### <a name="configuration"></a> Step 1: Configuration guide
 
-To learn how to configure our SDK, please visit our [developers page](http://developers.situm.es/pages/ios/quick_start_guide_swift.html).
+To learn how to configure our SDK, please visit our [developers page](http://developers.situm.es/pages/mobile/ios/quick_start_guide_swift.html).
 
 ### Step 2: Set API Key <a name="apikey"></a>
 
@@ -105,18 +105,18 @@ let locationManager: CLLocationManager = CLLocationManager()
 ···
 
     func getNearestBuilding() {
-    
+
         //Configure CLLocationManager
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestAlwaysAuthorization()
-        
+
         //Start and stop location updates in order to get only one update
         locationManager.startUpdatingLocation()
         locationManager.stopUpdatingLocation()
     }
-    
+
     //CLLocationManagerDelegate method
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations[0]
@@ -176,27 +176,27 @@ Situm SDK provides a way to show the indications while you are going from one po
 ```swift
   let navigationRequest : SITNavigationRequest = SITNavigationRequest.init(route: route)
   navigationManager.requestNavigationUpdates(navigationRequest)
-  
+
   ···
-  
+
     //NavigationManagerDelegate methods
     func navigationManager(_ navigationManager: SITNavigationInterface!, didFailWithError error: Error!) {
         print(error)
     }
-    
+
     func navigationManager(_ navigationManager: SITNavigationInterface!, didUpdate progress: SITNavigationProgress!, on route: SITRoute!) {
         //This contains navigation updates
         print(progress.currentIndication)
     }
-    
+
     func navigationManager(_ navigationManager: SITNavigationInterface!, destinationReachedOn route: SITRoute!) {
         print("Destination reached")
     }
-    
+
     func navigationManager(_ navigationManager: SITNavigationInterface!, userOutsideRoute route: SITRoute!) {
         print("User outside route")
     }
-        
+
 ```
 
 * Updating your position through the route
@@ -214,7 +214,7 @@ If you want to know more about the indications, you can check the [SDK Documenta
 
 ## <a name="moreinfo"></a> More information
 
-More info is available at our [Developers Page](https://des.situm.es/developers/pages/ios/).
+More info is available at our [Developers Page](https://developers.situm.es/pages/mobile/ios/index.html).
 
 ## <a name="supportinfo"></a> Support information
 
