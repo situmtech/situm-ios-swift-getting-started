@@ -93,7 +93,7 @@ class ViewController: UIViewController, SITLocationDelegate {
     @IBAction func startRequestButton(_ sender: UIButton) {
         
 //        Create the request to activate positioning
-        let request: SITLocationRequest = SITLocationRequest.init(priority: SITLocationPriority.highAccuracy, provider: SITLocationProvider.hybridProvider, updateInterval: 1, buildingID: self.building.identifier!, operationQueue: nil, options: nil)
+        let request: SITLocationRequest = SITLocationRequest.init(priority: SITLocationPriority.highAccuracy, provider: SITLocationProvider.hybridProvider, updateInterval: 1, buildingID: self.building.identifier, operationQueue: OperationQueue.main, options: nil)
         
 //        Send the created request
         sharedLocManager.requestLocationUpdates(request)
@@ -119,8 +119,8 @@ class ViewController: UIViewController, SITLocationDelegate {
         self.logAppConsole(message: "*POSITIONING REQUEST UPDATED*\nPosition was updated to:\n\n Latitude: \(location.position.coordinate().latitude)\n Longitude: \(location.position.coordinate().longitude).", clearConsole: true)
     }
     
-    func locationManager(_ locationManager: SITLocationInterface, didFailWithError error: Error) {
-        self.logAppConsole(message: "*POSITIONING REQUEST UPDATED*\nThere was an error with the request: \(error.localizedDescription)", clearConsole: true)
+    func locationManager(_ locationManager: SITLocationInterface, didFailWithError error: Error?) {
+        self.logAppConsole(message: "*POSITIONING REQUEST UPDATED*\nThere was an error with the request: \(error?.localizedDescription ?? "")", clearConsole: true)
     }
     
     func locationManager(_ locationManager: SITLocationInterface, didUpdate state: SITLocationState) {
