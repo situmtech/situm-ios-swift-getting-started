@@ -1,0 +1,20 @@
+PODS:
+  - Protobuf (3.7.0)
+  - SitumSDK (2.47.1):
+    - Protobuf (~> 3.7.0)
+
+DEPENDENCIES:
+  - SitumSDK (= 2.47.1)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Protobuf
+    - SitumSDK
+
+SPEC CHECKSUMS:
+  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  SitumSDK: 03e2191601c7880348cf797fc77d67f24dca9919
+
+PODFILE CHECKSUM: 2097f3771ea17dfadfd0f4ea13654436e872bab4
+
+COCOAPODS: 1.9.3
