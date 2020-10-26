@@ -15,6 +15,7 @@ class ViewController: UIViewController, SITLocationDelegate {
     var buildings: NSArray = NSArray()
     var building: SITBuilding = SITBuilding()
     var buildingInfo: SITBuildingInfo = SITBuildingInfo()
+    var locationAuthorizationHelper:LocationAuthorizationHelper = LocationAuthorizationHelper()
 
 //    First button initializes vars, second gets building info and third starts positioning
     @IBOutlet weak var button1: UIButton!
@@ -30,7 +31,7 @@ class ViewController: UIViewController, SITLocationDelegate {
         button1.isEnabled = true
         button2.isEnabled = false
         button3.isEnabled = false
-        
+        locationAuthorizationHelper.delegate = self
     }
     
 //    Button 1 function (yellow)
@@ -41,6 +42,9 @@ class ViewController: UIViewController, SITLocationDelegate {
         
 //        Set the delegate so the update functions receive the messages
             self.sharedLocManager.delegate = self
+        
+        //See LocationAuthorizationHelper for an example of how to handle location authorization changes from the user
+        self.locationAuthorizationHelper.requestLocationAuth()
         
 //        Initialize all the vars we are going to use
             self.buildings = NSArray()
@@ -93,7 +97,7 @@ class ViewController: UIViewController, SITLocationDelegate {
     @IBAction func startRequestButton(_ sender: UIButton) {
         
 //        Create the request to activate positioning
-        let request: SITLocationRequest = SITLocationRequest.init(priority: SITLocationPriority.highAccuracy, provider: SITLocationProvider.hybridProvider, updateInterval: 1, buildingID: self.building.identifier, operationQueue: OperationQueue.main, options: nil)
+        let request: SITLocationRequest = SITLocationRequest.init(buildingId: self.building.identifier)
         
 //        Send the created request
         sharedLocManager.requestLocationUpdates(request)
