@@ -1,12 +1,12 @@
 PODS:
   - Protobuf (3.21.12)
-  - SitumSDK (2.60.3):
+  - SitumSDK (2.61.0):
     - Protobuf (~> 3.7)
     - SSZipArchive (~> 2.4)
   - SSZipArchive (2.4.3)
 
 DEPENDENCIES:
-  - SitumSDK (= 2.60.3)
+  - SitumSDK (= 2.61.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -16,9 +16,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Protobuf: 120350fc38646e2dedc26f49ecba778184ea1de2
-  SitumSDK: c684ce3f46214035f65ff1b072d4f85e3d9b6879
+  SitumSDK: c98af5dabadfb408230c6784cfa0234d47780db3
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
 
-PODFILE CHECKSUM: 6a7ccdcf30980e8ac510cf0bcb24a870a12dce12
+PODFILE CHECKSUM: 225974acf49b69d704f3976d8e5e7cc8f29ca39a
 
 COCOAPODS: 1.12.1
